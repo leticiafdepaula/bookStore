@@ -1,16 +1,13 @@
 package com.leticia.bookStore.domain;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
-@NoArgsConstructor
 @Getter
 @Setter
+@Value
 @EqualsAndHashCode
 @Entity
 public class Book implements Serializable {
