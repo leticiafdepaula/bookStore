@@ -1,7 +1,9 @@
 package com.leticia.bookStore.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class Category implements Serializable {
     private Integer id;
     private String nome;
     private String descricao;
+
 
     @OneToMany(mappedBy = "category")
     private List<Book> books = new ArrayList<> ();
