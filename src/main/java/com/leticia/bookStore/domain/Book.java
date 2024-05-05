@@ -1,5 +1,6 @@
 package com.leticia.bookStore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,8 @@ public class Book implements Serializable {
     private String titulo;
     private String nome_autor;
     private String texto;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn (name = "category_id")
     private Category category;
