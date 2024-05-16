@@ -5,13 +5,14 @@ import com.leticia.bookStore.dtos.CategoryDto;
 import com.leticia.bookStore.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.data.jpa.domain.JpaSort.path;
 
 @RestController
 @RequestMapping(value = "/Category")
@@ -32,6 +33,12 @@ public class CategoryResource {
         List<CategoryDto> ListDTO = List.stream ().map (obj -> new CategoryDto (obj)).collect (Collectors.toList ());
         return ResponseEntity.ok (ListDTO);
     }
-}
 
+    @PostMapping
+    public ResponseEntity<Category> create(@RequestBody Category obj) {
+        obj = categoryService.create(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri ().path ("/{id}").buildAndExpand (obj.getId ()).toUri ();
+        return ResponseEntity.created (uri).build ();
+    }
+}
 

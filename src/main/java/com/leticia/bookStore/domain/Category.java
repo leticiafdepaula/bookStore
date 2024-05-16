@@ -1,5 +1,6 @@
 package com.leticia.bookStore.domain;
 
+import com.leticia.bookStore.service.CategoryService;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @Entity
-public class Category implements Serializable {
+public class Category extends CategoryService implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

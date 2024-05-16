@@ -5,6 +5,7 @@ import com.leticia.bookStore.exception.ObjectNotFoundException;
 import com.leticia.bookStore.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,4 +25,10 @@ public class CategoryService {
     public List<Category> findAll() {
         return categoryRepository.findAll ();
     }
+
+    public Category create(Category obj) {
+      return null;
+    }
 }
+
+
