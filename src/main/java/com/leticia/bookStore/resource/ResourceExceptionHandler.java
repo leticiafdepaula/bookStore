@@ -1,5 +1,6 @@
 package com.leticia.bookStore.resource;
 
+import com.leticia.bookStore.exception.DataIntegrityViolationException;
 import com.leticia.bookStore.exception.ObjectNotFoundException;
 import com.leticia.bookStore.exception.StandardError;
 import jakarta.servlet.ServletRequest;
@@ -16,5 +17,12 @@ public class ResourceExceptionHandler {
         StandardError error = new StandardError (System.currentTimeMillis (),
                 HttpStatus.NOT_FOUND.value (), e.getMessage ());
        return ResponseEntity.status (HttpStatus.NOT_FOUND).body (error);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<StandardError> DataIntegrityViolationException(DataIntegrityViolationException e, ServletRequest request) {
+        StandardError error = new StandardError (System.currentTimeMillis (),
+                HttpStatus.BAD_REQUEST.value (), e.getMessage ());
+        return ResponseEntity.status (HttpStatus.BAD_REQUEST).body (error);
     }
 }
