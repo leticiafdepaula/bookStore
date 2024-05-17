@@ -30,15 +30,22 @@ public class CategoryResource {
     @GetMapping
     public ResponseEntity<List<CategoryDto>> findAll() {
         List<Category> List = categoryService.findAll ();
-        List<CategoryDto> ListDTO = List.stream ().map (obj -> new CategoryDto (obj)).collect (Collectors.toList ());
+        List<CategoryDto> ListDTO = List.stream ().map (obj -> new CategoryDto(obj)).collect (Collectors.toList ());
         return ResponseEntity.ok (ListDTO);
     }
 
     @PostMapping
     public ResponseEntity<Category> create(@RequestBody Category obj) {
         obj = categoryService.create(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri ().path ("/{id}").buildAndExpand (obj.getId ()).toUri ();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri ().path ("/{id}")
+        .buildAndExpand (obj.getId ()).toUri ();
         return ResponseEntity.created (uri).build ();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CategoryDto> update(@PathVariable Integer id, @RequestBody CategoryDto objDto) {
+       Category newObj = categoryService.create (id, objDto);
+       return ResponseEntity.ok ().body (new CategoryDto (newObj));
     }
 }
 

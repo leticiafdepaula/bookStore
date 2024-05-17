@@ -1,6 +1,7 @@
 package com.leticia.bookStore.service;
 
 import com.leticia.bookStore.domain.Category;
+import com.leticia.bookStore.dtos.CategoryDto;
 import com.leticia.bookStore.exception.ObjectNotFoundException;
 import com.leticia.bookStore.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,13 @@ public class CategoryService {
 
     public Category create(Category obj) {
       return null;
+    }
+
+    public Category create(Integer id, CategoryDto objDto) {
+        Category obj = findById (id);
+        obj.setNome (obj.getNome ());
+        obj.setDescricao (objDto.getDescricao ());
+        return categoryRepository.save (obj);
     }
 }
 
