@@ -6,11 +6,8 @@ import com.leticia.bookStore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Nodes.collect;
 
 @RestController
 @RequestMapping(value = "/livros")
@@ -32,4 +29,15 @@ public class BookResource {
      return ResponseEntity.ok ().body (ListDto);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Book> update(@PathVariable Integer id, @RequestBody Book obj) {
+        Book newObj = service.update(id, obj);
+        return ResponseEntity.ok ().body (newObj);
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Book> updatePath(@PathVariable Integer id, @RequestBody Book obj) {
+        Book newObj = service.update(id, obj);
+        return ResponseEntity.ok ().body (newObj);
+    }
 }

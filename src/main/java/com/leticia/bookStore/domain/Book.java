@@ -24,4 +24,13 @@ public class Book implements Serializable {
     @ManyToOne
     @JoinColumn (name = "category_id")
     private Category category;
+
+    public void setTitulo(String texto) {
+    }
+
+    public void setNome(String nomeAutor) {
+    }
+
+    public void setTexto(String texto) {
+    }
 }
