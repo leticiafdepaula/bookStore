@@ -49,4 +49,9 @@ public class BookService {
         return bookRepository.save (obj);
 
     }
+
+    public void delete(Integer id) {
+        Book obj = findById (id);
+        bookRepository.delete (obj);
+    }
 }
