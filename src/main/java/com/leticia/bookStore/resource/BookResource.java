@@ -6,8 +6,14 @@ import com.leticia.bookStore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.print.ServiceUI;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentContextPath;
 
 @RestController
 @RequestMapping(value = "/livros")
@@ -39,5 +45,13 @@ public class BookResource {
     public ResponseEntity<Book> updatePath(@PathVariable Integer id, @RequestBody Book obj) {
         Book newObj = service.update(id, obj);
         return ResponseEntity.ok ().body (newObj);
+    }
+    @PostMapping
+    public ResponseEntity<Book> create(@RequestParam(value = "category", defaultValue = "0") Integer id_cat,
+      @RequestBody Book obj) {
+        Book newObj = service.create (id_cat, obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path ("/Book/{id}")
+        .buildAndExpand (newObj.getId ()).toUri ();
+        return ResponseEntity.created (uri).build ();
     }
 }

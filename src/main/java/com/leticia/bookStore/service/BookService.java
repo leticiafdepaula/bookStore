@@ -1,6 +1,7 @@
 package com.leticia.bookStore.service;
 
 import com.leticia.bookStore.domain.Book;
+import com.leticia.bookStore.domain.Category;
 import com.leticia.bookStore.exception.ObjectNotFoundException;
 import com.leticia.bookStore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class BookService {
         newObj.setNome(obj.getNome_autor ());
         newObj.setTexto(obj.getTexto ());
 
+    }
+
+    public Book create(Integer idCat, Book obj) {
+        obj.setId(null);
+        Category cat = categoryService.findById (idCat);
+        obj.setCategory (cat);
+        return bookRepository.save (obj);
 
     }
 }

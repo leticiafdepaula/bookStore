@@ -33,4 +33,10 @@ public class Book implements Serializable {
 
     public void setTexto(String texto) {
     }
+
+    public void setId(Object o) {
+    }
+
+    public void setCategory(Category cat) {
+    }
 }
