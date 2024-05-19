@@ -5,14 +5,16 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin("*")
 @Getter
 @Setter
-@EqualsAndHashCode
 @Entity
 public class Category extends CategoryService implements Serializable {
 

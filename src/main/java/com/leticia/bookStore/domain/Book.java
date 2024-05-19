@@ -9,7 +9,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Value
-@EqualsAndHashCode
 @Entity
 public class Book implements Serializable {
 
