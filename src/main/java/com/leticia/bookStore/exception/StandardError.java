@@ -12,7 +12,7 @@ public class StandardError {
     private String errorMessage;
 
     public StandardError() {
-       super();
+        super();
     }
 
 
